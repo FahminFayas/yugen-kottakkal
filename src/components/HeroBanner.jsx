@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 const heroImages = [
   { light: '/img/HeroBanner-light-1.png', dark: '/img/HeroBanner-dark-1.png', headline: ['Chase Dreams', 'Reach New Heights'] },
-  { light: '/img/HeroBanner-light-2.png', dark: '/img/HeroBanner-dark-2.png', headline: ['Let Your', 'Dreams Take', 'Flight'] }
+  { light: '/img/HeroBanner-light-2.png', dark: '/img/HeroBanner-dark-2.png', headline: ['Let Your', 'Dreams Fly', 'High'] }
 ];
 
 export default function HeroBanner() {
@@ -51,7 +51,7 @@ export default function HeroBanner() {
       }}
     >
       {/* Mobile: No image background, just color */}
-      <div className="block md:hidden w-full flex justify-center mb-4" style={{width: '100vw', aspectRatio: '2/1', maxWidth: '100vw'}}>
+      <div className="md:hidden w-full flex justify-center mb-4" style={{width: '100vw', aspectRatio: '2/1', maxWidth: '100vw'}}>
         {/* No image on mobile */}
       </div>
       <div className="max-w-2xl text-left z-10 px-4 ml-0 md:ml-12 lg:ml-24">

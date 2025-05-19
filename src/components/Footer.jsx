@@ -37,7 +37,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-gray-200 pt-4 text-[#888] text-[14px] dark:border-dark3-dark dark:text-dark3-dark">
-          © 2025 Yugen Education. Powered By <a href="https://theleograph.com/" target="_blank" rel="noopener" className="text-primary no-underline focus-outline dark:text-primary-dark">The Leograph</a>.
+          © 2025 Yugen Education. Developed By <a href="https://www.instagram.com/__fahmin/" target="_blank" rel="noopener" className="text-primary no-underline focus-outline dark:text-primary-dark">Fahmin</a>.
         </div>
       </div>
     </footer>

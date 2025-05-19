@@ -14,7 +14,6 @@ export default function Header() {
   }, [dark]);
 
   useEffect(() => {
-    // Set initial theme from localStorage or system preference
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme');
       if (saved === 'dark') {
@@ -35,7 +34,6 @@ export default function Header() {
     } else {
       document.body.style.overflow = 'auto';
     }
-    // Cleanup function to ensure body scroll is restored if component unmounts while menu is open
     return () => {
       document.body.style.overflow = 'auto';
     };
@@ -51,14 +49,15 @@ export default function Header() {
         document.documentElement.classList.remove('dark');
         localStorage.setItem('theme', 'light');
       }
-      // Dispatch custom event for theme change
       window.dispatchEvent(new Event('themechange'));
       return newDark;
     });
   };
 
+  const closeMenu = () => setMenuOpen(false);
+
   return (
-    <header className="fixed top-0 left-0 w-full z-[120] bg-transparent backdrop-blur-md transition-colors duration-300">
+    <header className="fixed top-0 left-0 w-full z-[110] bg-transparent backdrop-blur-md transition-colors duration-300">
       <nav className="max-w-[1200px] mx-auto flex items-center justify-between py-2 px-4" aria-label="Main navigation">
         <a href="/" className="flex items-center gap-2 group">
           <img src="/img/logo.png" alt="Yugen Education" className="h-12 block dark:hidden" />
@@ -81,7 +80,6 @@ export default function Header() {
             <li><a href="/contact" className="px-2 py-1 rounded transition-colors duration-150 hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark">Contact Us</a></li>
           </ul>
           <a href="tel:+918943888006" className="bg-primary text-white px-5 py-2 rounded-lg no-underline font-semibold shadow hover:bg-primary-dark transition">Call Now</a>
-          {/* Dark mode toggle - only render once */}
           <button
             className="ml-4 flex items-center bg-gray-200 dark:bg-[#23272f] rounded-full px-2 py-1 transition-colors duration-200 focus:outline-none border border-gray-300 dark:border-[#333]"
             aria-label="Toggle dark mode"
@@ -93,6 +91,7 @@ export default function Header() {
             <span className="ml-1">{dark ? '🌙' : '☀️'}</span>
           </button>
         </div>
+
         {/* Mobile right controls: hamburger + theme toggle */}
         <div className="mobile-controls flex items-center gap-2 ml-auto md:hidden">
           <button
@@ -109,30 +108,78 @@ export default function Header() {
             ☰
           </button>
         </div>
+
         {/* Mobile Menu Overlay */}
         {menuOpen && (
           <>
-            {/* Overlay: fade-in, blur, dark */}
-            <div className="fixed inset-0 z-[110] bg-black/60 backdrop-blur-sm transition-opacity duration-300" onClick={() => setMenuOpen(false)} aria-label="Close mobile menu overlay" style={{top: 0, left: 0, width: '100vw', height: '100vh'}} />
-            {/* Modern Drawer Panel */}
-            <div className="fixed top-0 right-0 h-full w-[320px] max-w-sm bg-white/80 dark:bg-[#23272f]/80 backdrop-blur-xl shadow-2xl rounded-l-3xl border-l-4 border-primary dark:border-primary-dark z-[130] flex flex-col p-8 transform transition-transform duration-300 translate-x-0 animate-slide-in">
-              {/* Modern Close Button */}
-              <button className="self-end mb-8 w-12 h-12 flex items-center justify-center rounded-full bg-white/80 dark:bg-[#23272f]/80 shadow-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 text-3xl text-primary dark:text-primary-dark focus:outline-none" aria-label="Close mobile menu" onClick={() => setMenuOpen(false)}>
-                <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' fill='none' viewBox='0 0 24 24'><path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M18 6 6 18M6 6l12 12'/></svg>
-              </button>
-              <nav className="flex-1 flex flex-col gap-6">
-                <a href="/" onClick={() => setMenuOpen(false)} className="block text-2xl font-bold text-gray-800 dark:text-gray-100 py-3 px-4 rounded-lg hover:bg-primary/10 dark:hover:bg-primary-dark/20 transition">Home</a>
-                <a href="/about" onClick={() => setMenuOpen(false)} className="block text-2xl font-bold text-gray-800 dark:text-gray-100 py-3 px-4 rounded-lg hover:bg-primary/10 dark:hover:bg-primary-dark/20 transition">About</a>
-                <a href="/courses/mftg" onClick={() => setMenuOpen(false)} className="block text-2xl font-bold text-gray-800 dark:text-gray-100 py-3 px-4 rounded-lg hover:bg-primary/10 dark:hover:bg-primary-dark/20 transition">MFTG Course</a>
-                <a href="/courses/mfa" onClick={() => setMenuOpen(false)} className="block text-2xl font-bold text-gray-800 dark:text-gray-100 py-3 px-4 rounded-lg hover:bg-primary/10 dark:hover:bg-primary-dark/20 transition">MFA Course</a>
-                <a href="/courses/power-bi" onClick={() => setMenuOpen(false)} className="block text-2xl font-bold text-gray-800 dark:text-gray-100 py-3 px-4 rounded-lg hover:bg-primary/10 dark:hover:bg-primary-dark/20 transition">Power BI Course</a>
-                <a href="/gallery" onClick={() => setMenuOpen(false)} className="block text-2xl font-bold text-gray-800 dark:text-gray-100 py-3 px-4 rounded-lg hover:bg-primary/10 dark:hover:bg-primary-dark/20 transition">Gallery</a>
-                <a href="/blog" onClick={() => setMenuOpen(false)} className="block text-2xl font-bold text-gray-800 dark:text-gray-100 py-3 px-4 rounded-lg hover:bg-primary/10 dark:hover:bg-primary-dark/20 transition">Blog</a>
-                <a href="/contact" onClick={() => setMenuOpen(false)} className="block text-2xl font-bold text-gray-800 dark:text-gray-100 py-3 px-4 rounded-lg hover:bg-primary/10 dark:hover:bg-primary-dark/20 transition">Contact Us</a>
+            {/* --- Fullscreen Overlay with Blur --- */}
+            <div className="fixed inset-0 z-[120] bg-black/70 backdrop-blur-md transition-opacity duration-300 animate-fade-in" onClick={closeMenu} aria-label="Close mobile menu overlay" />
+            
+            {/* --- Modern Drawer Panel (Right Aligned, Enhanced UI/UX) --- */}
+            <div className="fixed top-0 right-0 h-full w-4/5 max-w-xs sm:max-w-sm bg-white dark:bg-gray-900 shadow-2xl rounded-l-3xl border-l-4 border-primary dark:border-primary-dark z-[130] flex flex-col h-full animate-slide-in">
+              {/* Drawer Header with Logo & Close Button */}
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+                <a href="/" className="flex items-center gap-2 group" onClick={closeMenu}>
+                  <img src="/img/logo.png" alt="Yugen Education" className="h-9 block dark:hidden" />
+                  <img src="/img/logo-light.png" alt="Yugen Education" className="h-9 hidden dark:block" />
+                </a>
+                <button 
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-gray-600 dark:text-gray-300 focus:outline-none" 
+                  aria-label="Close mobile menu" 
+                  onClick={closeMenu}
+                >
+                  <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'><path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M18 6 6 18M6 6l12 12'/></svg>
+                </button>
+              </div>
+
+              {/* Navigation Links */}
+              <nav className="flex-1 flex flex-col gap-2 py-4 px-2 overflow-y-auto">
+                <a href="/" onClick={closeMenu} className="flex items-center gap-3 text-lg font-medium text-gray-700 dark:text-gray-300 py-3 px-4 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark transition-all duration-200 ease-in-out">
+                  <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-primary dark:text-primary-dark' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6'/></svg>
+                  Home
+                </a>
+                <a href="/about" onClick={closeMenu} className="flex items-center gap-3 text-lg font-medium text-gray-700 dark:text-gray-300 py-3 px-4 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark transition-all duration-200 ease-in-out">
+                  <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-primary dark:text-primary-dark' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z'/></svg>
+                  About
+                </a>
+                {/* Consider a collapsible "Courses" section if you have many courses */}
+                <a href="/courses/mftg" onClick={closeMenu} className="flex items-center gap-3 text-lg font-medium text-gray-700 dark:text-gray-300 py-3 px-4 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark transition-all duration-200 ease-in-out">
+                  <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-primary dark:text-primary-dark' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M12 14l9-5-9-5-9 5 9 5zm0 7v-6m0 0l-9-5m9 5l9-5'/></svg>
+                  MFTG Course
+                </a>
+                <a href="/courses/mfa" onClick={closeMenu} className="flex items-center gap-3 text-lg font-medium text-gray-700 dark:text-gray-300 py-3 px-4 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark transition-all duration-200 ease-in-out">
+                  <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-primary dark:text-primary-dark' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 0V4m0 7v7m0 0l-3-3m3 3l3-3'/></svg>
+                  MFA Course
+                </a>
+                <a href="/courses/power-bi" onClick={closeMenu} className="flex items-center gap-3 text-lg font-medium text-gray-700 dark:text-gray-300 py-3 px-4 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark transition-all duration-200 ease-in-out">
+                  <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-primary dark:text-primary-dark' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M13 16h-1v-4h-1m4 0h-1v4h-1m-4 0h-1v-4h-1'/></svg>
+                  Power BI Course
+                </a>
+                <a href="/gallery" onClick={closeMenu} className="flex items-center gap-3 text-lg font-medium text-gray-700 dark:text-gray-300 py-3 px-4 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark transition-all duration-200 ease-in-out">
+                  <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-primary dark:text-primary-dark' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M3 7l9 6 9-6'/></svg>
+                  Gallery
+                </a>
+                <a href="/blog" onClick={closeMenu} className="flex items-center gap-3 text-lg font-medium text-gray-700 dark:text-gray-300 py-3 px-4 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark transition-all duration-200 ease-in-out">
+                  <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-primary dark:text-primary-dark' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M19 21H5a2 2 0 01-2-2V7a2 2 0 012-2h4l2-2h6a2 2 0 012 2v12a2 2 0 01-2 2z'/></svg>
+                  Blog
+                </a>
+                <a href="/contact" onClick={closeMenu} className="flex items-center gap-3 text-lg font-medium text-gray-700 dark:text-gray-300 py-3 px-4 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark transition-all duration-200 ease-in-out">
+                  <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-primary dark:text-primary-dark' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M16 12H8m8 0a4 4 0 11-8 0 4 4 0 018 0zm-8 0V8a4 4 0 018 0v4'/></svg>
+                  Contact Us
+                </a>
               </nav>
+
               {/* Sticky Call Now Button */}
-              <div className="mt-8 sticky bottom-8">
-                <a href="tel:+918943888006" className="block w-full bg-primary text-white text-center px-8 py-4 rounded-2xl text-2xl font-bold shadow-lg hover:bg-primary-dark transition">Call Now</a>
+              <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+                <a 
+                  href="tel:+918943888006" 
+                  className="w-full bg-primary text-white text-center px-6 py-3 rounded-xl text-lg font-semibold shadow-lg hover:bg-primary-dark transition-colors duration-200 ease-in-out flex items-center justify-center gap-2"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                  </svg>
+                  Call Now
+                </a>
               </div>
             </div>
             <style>{`
@@ -143,22 +190,32 @@ export default function Header() {
               .animate-slide-in {
                 animation: slide-in 0.3s cubic-bezier(0.4,0,0.2,1);
               }
+              @keyframes fade-in {
+                from { opacity: 0; }
+                to { opacity: 1; }
+              }
+              .animate-fade-in {
+                animation: fade-in 0.3s cubic-bezier(0.4,0,0.2,1);
+              }
             `}</style>
           </>
         )}
       </nav>
       <style>{`
-        @media (max-width: 900px) {
+        @media (max-width: 900px) { /* Changed from md: (768px) to 900px for a more specific breakpoint if needed, or adjust to md (768px)*/
           .desktop-nav { display: none !important; }
-          .mobile-controls { display: flex !important; position: absolute; top: 16px; right: 16px; z-index: 200; }
-          .mobile-nav-toggle, .mobile-dark-toggle { display: inline-flex !important; }
+          .mobile-controls { display: flex !important; /* Removed absolute positioning as it was causing layout issues with the example*/ }
+         /* .mobile-nav-toggle, .mobile-dark-toggle { display: inline-flex !important; } */ /* Not strictly needed if mobile-controls is flex */
         }
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateX(40px); }
-          to { opacity: 1; transform: none; }
+        @media (min-width: 901px) { /* Ensure mobile controls are hidden on desktop */
+            .mobile-controls { display: none !important; }
         }
-        .animate-fade-in { animation: fadeIn 0.3s; }
+
+        /* General body scroll lock when menu is open - This is handled by JS, but an extra CSS guard can be useful */
+        body.menu-open-no-scroll {
+          overflow: hidden;
+        }
       `}</style>
     </header>
   );
-} 
+}
