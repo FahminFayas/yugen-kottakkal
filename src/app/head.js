@@ -5,7 +5,7 @@ export default function Head() {
       <meta name="description" content="YUGEN School of Accounting & Taxation Kottakkal offers industry-aligned training with real-time examples to prepare students for careers in accounting and taxation. We provide flexible classroom and online training, including weekend and fast-track options. Students can choose convenient time slots, with sessions available on weekdays (morning/evening) and weekends." />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="theme-color" content="#0ea5e9" />
-      <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+      <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       <meta property="og:title" content="YUGEN School of Accounting and Taxation - Kottakkal" />
       <meta property="og:description" content="YUGEN School of Accounting & Taxation Kottakkal offers industry-aligned training with real-time examples to prepare students for careers in accounting and taxation. We provide flexible classroom and online training, including weekend and fast-track options. Students can choose convenient time slots, with sessions available on weekdays (morning/evening) and weekends." />
       <meta property="og:type" content="website" />
