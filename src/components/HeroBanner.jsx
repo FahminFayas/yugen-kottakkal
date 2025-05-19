@@ -2,23 +2,38 @@
 import { useEffect, useState } from 'react';
 
 const heroImages = [
-  { light: '/img/HeroBanner-light-1.png', dark: '/img/HeroBanner-dark-1.png', headline: ['Chase Dreams', 'Reach New Heights'] },
-  { light: '/img/HeroBanner-light-2.png', dark: '/img/HeroBanner-dark-2.png', headline: ['Let Your', 'Dreams Fly', 'High'] }
+  {
+    light: '/img/HeroBanner-light-1.png',
+    dark: '/img/HeroBanner-dark-1.png',
+    lightMobile: '/img/HeroBanner-light-mobile-1.png',
+    darkMobile: '/img/HeroBanner-dark-mobile-1.png',
+    headline: ['Chase Dreams', 'Reach New Heights']
+  },
+  {
+    light: '/img/HeroBanner-light-2.png',
+    dark: '/img/HeroBanner-dark-2.png',
+    lightMobile: '/img/HeroBanner-light-mobile-2.png',
+    darkMobile: '/img/HeroBanner-dark-mobile-2.png',
+    headline: ['Let Your', 'Dreams Take', 'Flight']
+  }
 ];
 
 export default function HeroBanner() {
   const [index, setIndex] = useState(0);
   const [isDark, setIsDark] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const updateTheme = () => {
       const darkNow = document.documentElement.classList.contains('dark');
-      setIsDark(prevIsDark => {
-        if (prevIsDark !== darkNow) {
-          return darkNow;
-        }
-        return prevIsDark;
-      });
+      setTimeout(() => {
+        setIsDark(prevIsDark => {
+          if (prevIsDark !== darkNow) {
+            return darkNow;
+          }
+          return prevIsDark;
+        });
+      }, 0);
     };
     updateTheme();
 
@@ -32,16 +47,25 @@ export default function HeroBanner() {
   }, []);
 
   useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
     const interval = setInterval(() => setIndex(i => (i + 1) % heroImages.length), 6000);
     return () => clearInterval(interval);
   }, []);
 
-  const bg = isDark ? heroImages[index].dark : heroImages[index].light;
+  const bg = isMobile
+    ? (isDark ? heroImages[index].darkMobile : heroImages[index].lightMobile)
+    : (isDark ? heroImages[index].dark : heroImages[index].light);
   const headline = heroImages[index].headline;
 
   return (
     <section
-      className="relative flex flex-col md:flex-row items-center min-h-[calc(100vh-96px)] pt-24 pb-0 transition-all duration-700 bg-bg dark:bg-bg-dark mobile-no-bg"
+      className="relative flex flex-col md:flex-row items-center min-h-[calc(100vh-96px)] pt-24 pb-0 transition-all duration-700 bg-bg dark:bg-bg-dark"
       style={{
         backgroundImage: `url('${bg}')`,
         backgroundPosition: 'center',

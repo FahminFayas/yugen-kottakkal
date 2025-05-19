@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dark, setDark] = useState(false);
+  const [accordionOpen, setAccordionOpen] = useState(false);
 
   useEffect(() => {
     if (dark) {
@@ -116,22 +117,7 @@ export default function Header() {
             <div className="fixed inset-0 z-[120] bg-black/70 backdrop-blur-md transition-opacity duration-300 animate-fade-in" onClick={closeMenu} aria-label="Close mobile menu overlay" />
             
             {/* --- Modern Drawer Panel (Right Aligned, Enhanced UI/UX) --- */}
-            <div className="fixed top-0 right-0 h-full w-4/5 max-w-xs sm:max-w-sm bg-white dark:bg-gray-900 shadow-2xl rounded-l-3xl border-l-4 border-primary dark:border-primary-dark z-[130] flex flex-col h-full animate-slide-in">
-              {/* Drawer Header with Logo & Close Button */}
-              <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-                <a href="/" className="flex items-center gap-2 group" onClick={closeMenu}>
-                  <img src="/img/logo.png" alt="Yugen Education" className="h-9 block dark:hidden" />
-                  <img src="/img/logo-light.png" alt="Yugen Education" className="h-9 hidden dark:block" />
-                </a>
-                <button 
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-gray-600 dark:text-gray-300 focus:outline-none" 
-                  aria-label="Close mobile menu" 
-                  onClick={closeMenu}
-                >
-                  <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'><path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M18 6 6 18M6 6l12 12'/></svg>
-                </button>
-              </div>
-
+            <div className="fixed right-0 top-16 w-4/5 max-w-xs sm:max-w-sm h-[calc(100vh-64px)] z-[130] flex flex-col animate-slide-in bg-white/80 dark:bg-gray-900/80 shadow-2xl backdrop-blur-lg border-l-4 border-primary dark:border-primary-dark">
               {/* Navigation Links */}
               <nav className="flex-1 flex flex-col gap-2 py-4 px-2 overflow-y-auto">
                 <a href="/" onClick={closeMenu} className="flex items-center gap-3 text-lg font-medium text-gray-700 dark:text-gray-300 py-3 px-4 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark transition-all duration-200 ease-in-out">
@@ -142,19 +128,28 @@ export default function Header() {
                   <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-primary dark:text-primary-dark' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.655 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z'/></svg>
                   About
                 </a>
-                {/* Consider a collapsible "Courses" section if you have many courses */}
-                <a href="/courses/mftg" onClick={closeMenu} className="flex items-center gap-3 text-lg font-medium text-gray-700 dark:text-gray-300 py-3 px-4 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark transition-all duration-200 ease-in-out">
-                  <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-primary dark:text-primary-dark' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M12 14l9-5-9-5-9 5 9 5zm0 7v-6m0 0l-9-5m9 5l9-5'/></svg>
-                  MFTG Course
-                </a>
-                <a href="/courses/mfa" onClick={closeMenu} className="flex items-center gap-3 text-lg font-medium text-gray-700 dark:text-gray-300 py-3 px-4 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark transition-all duration-200 ease-in-out">
-                  <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-primary dark:text-primary-dark' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 0V4m0 7v7m0 0l-3-3m3 3l3-3'/></svg>
-                  MFA Course
-                </a>
-                <a href="/courses/power-bi" onClick={closeMenu} className="flex items-center gap-3 text-lg font-medium text-gray-700 dark:text-gray-300 py-3 px-4 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark transition-all duration-200 ease-in-out">
-                  <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-primary dark:text-primary-dark' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M13 16h-1v-4h-1m4 0h-1v4h-1m-4 0h-1v-4h-1'/></svg>
-                  Power BI Course
-                </a>
+                {/* Collapsible Courses Section */}
+                <div className="accordion-group">
+                  <button
+                    className="flex items-center justify-between w-full text-lg font-medium text-gray-700 dark:text-gray-300 py-3 px-4 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark transition-all duration-200 ease-in-out focus:outline-none"
+                    aria-expanded={accordionOpen}
+                    aria-controls="courses-accordion"
+                    onClick={() => setAccordionOpen(o => !o)}
+                  >
+                    <span className="flex items-center gap-3">
+                      <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-primary dark:text-primary-dark' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M12 14l9-5-9-5-9 5 9 5zm0 7v-6m0 0l-9-5m9 5l9-5'/></svg>
+                      Courses
+                    </span>
+                    <svg className={`w-5 h-5 ml-2 transition-transform duration-200 ${accordionOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+                  </button>
+                  <div id="courses-accordion" className={`pl-8 pr-2 transition-all duration-200 overflow-hidden ${accordionOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
+                    style={{ pointerEvents: accordionOpen ? 'auto' : 'none' }}
+                  >
+                    <a href="/courses/mftg" onClick={closeMenu} className="block py-2 text-base text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-dark transition">MFTG Course</a>
+                    <a href="/courses/mfa" onClick={closeMenu} className="block py-2 text-base text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-dark transition">MFA Course</a>
+                    <a href="/courses/power-bi" onClick={closeMenu} className="block py-2 text-base text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-dark transition">Power BI Course</a>
+                  </div>
+                </div>
                 <a href="/gallery" onClick={closeMenu} className="flex items-center gap-3 text-lg font-medium text-gray-700 dark:text-gray-300 py-3 px-4 rounded-lg hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark transition-all duration-200 ease-in-out">
                   <svg xmlns='http://www.w3.org/2000/svg' className='w-6 h-6 text-primary dark:text-primary-dark' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' d='M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M3 7l9 6 9-6'/></svg>
                   Gallery
@@ -169,26 +164,36 @@ export default function Header() {
                 </a>
               </nav>
 
-              {/* Sticky Call Now Button */}
-              <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-                <a 
-                  href="tel:+918943888006" 
+              {/* Sticky Call Now Button & Dark Mode Toggle */}
+              <div className="p-4 border-t border-gray-200 dark:border-gray-700 flex flex-col gap-3">
+                <button 
                   className="w-full bg-primary text-white text-center px-6 py-3 rounded-xl text-lg font-semibold shadow-lg hover:bg-primary-dark transition-colors duration-200 ease-in-out flex items-center justify-center gap-2"
+                  onClick={() => { window.location.href = 'tel:+918943888006'; }}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                   </svg>
                   Call Now
-                </a>
+                </button>
+                <button
+                  className="w-full flex items-center justify-center bg-gray-200 dark:bg-[#23272f] rounded-full px-2 py-2 transition-colors duration-200 focus:outline-none border border-gray-300 dark:border-[#333]"
+                  aria-label="Toggle dark mode"
+                  onClick={handleToggleDark}
+                  style={{ minWidth: 48 }}
+                >
+                  <span className={`inline-block w-5 h-5 rounded-full transition-all duration-300 ${dark ? 'translate-x-5 bg-primary' : 'bg-yellow-400'}`}></span>
+                  <span className="ml-2 text-xs text-[#222] dark:text-white">{dark ? 'Dark' : 'Light'}</span>
+                  <span className="ml-1">{dark ? '🌙' : '☀️'}</span>
+                </button>
               </div>
             </div>
             <style>{`
               @keyframes slide-in {
-                from { transform: translateX(100%); }
-                to { transform: translateX(0); }
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
               }
               .animate-slide-in {
-                animation: slide-in 0.3s cubic-bezier(0.4,0,0.2,1);
+                animation: slide-in 0.4s cubic-bezier(0.4,0,0.2,1);
               }
               @keyframes fade-in {
                 from { opacity: 0; }
