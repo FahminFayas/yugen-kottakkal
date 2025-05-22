@@ -7,12 +7,15 @@ import CourseIncludes from '../components/CourseIncludes';
 import CallToAction from '../components/CallToAction';
 import Footer from '../components/Footer';
 import FloatingContactButton from '../components/FloatingContactButton';
+import Head from './head.js';
 
 export default function HomePage() {
   return (
     <>
+      <Head />
       <Header />
-      <main className="bg-bg">
+      <main className="bg-bg" aria-label="YUGEN School of Accounting and Taxation - Kottakkal main content">
+        <h1 className="sr-only">Accounting Course in Kottakkal – YUGEN School of Accounting & Taxation</h1>
         <HeroBanner />
         <FeaturedCourses />
         <CourseIncludes />
@@ -32,6 +35,38 @@ export default function HomePage() {
           Whatsapp
         </a>
       </div>
+      <link rel="canonical" href="https://yugenkottakkal.com/" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'EducationalOrganization',
+        'name': 'YUGEN School of Accounting and Taxation',
+        'url': 'https://yugenkottakkal.com/',
+        'logo': 'https://yugenkottakkal.com/img/logo-light.png',
+        'address': {
+          '@type': 'PostalAddress',
+          'streetAddress': 'Smart Trade City, Near Kottakkal Bus Stand, Kottakkal (PO)',
+          'addressLocality': 'Malappuram',
+          'postalCode': '676503',
+          'addressCountry': 'IN'
+        },
+        'contactPoint': [{
+          '@type': 'ContactPoint',
+          'telephone': '+91-8943888006',
+          'contactType': 'customer service',
+          'areaServed': 'IN',
+          'availableLanguage': ['English', 'Malayalam']
+        }],
+        'hasCourse': {
+          '@type': 'Course',
+          'name': 'Accounting Course in Kottakkal',
+          'description': 'Comprehensive accounting and taxation training by expert faculty. Includes GST, Income Tax, Tally, and job-oriented modules. 100% placement support.',
+          'provider': {
+            '@type': 'EducationalOrganization',
+            'name': 'YUGEN School of Accounting and Taxation',
+            'url': 'https://yugenkottakkal.com/'
+          }
+        }
+      }) }} />
     </>
   );
 } 

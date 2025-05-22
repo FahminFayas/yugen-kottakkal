@@ -3,17 +3,17 @@ import { useEffect, useState } from 'react';
 
 const heroImages = [
   {
-    light: '/img/HeroBanner-light-1.png',
-    dark: '/img/HeroBanner-dark-1.png',
-    lightMobile: '/img/HeroBanner-light-mobile-1.png',
-    darkMobile: '/img/HeroBanner-dark-mobile-1.png',
+    light: '/img/HeroBanner-light-1.jpg',
+    dark: '/img/HeroBanner-dark-1.jpg',
+    lightMobile: '/img/HeroBanner-light-mobile-1.jpg',
+    darkMobile: '/img/HeroBanner-dark-mobile-1.jpg',
     headline: ['Chase Dreams', 'Reach New Heights']
   },
   {
-    light: '/img/HeroBanner-light-2.png',
-    dark: '/img/HeroBanner-dark-2.png',
-    lightMobile: '/img/HeroBanner-light-mobile-2.png',
-    darkMobile: '/img/HeroBanner-dark-mobile-2.png',
+    light: '/img/HeroBanner-light-2.jpg',
+    dark: '/img/HeroBanner-dark-2.jpg',
+    lightMobile: '/img/HeroBanner-light-mobile-2.jpg',
+    darkMobile: '/img/HeroBanner-dark-mobile-2.jpg',
     headline: ['Let Your', 'Dreams Take', 'Flight']
   }
 ];
@@ -89,7 +89,7 @@ export default function HeroBanner() {
         </div>
       </div>
       {/* Desktop: Gradient overlay */}
-      <div className="hidden md:block absolute inset-0 bg-gradient-to-b from-white/80 to-transparent dark:from-[#18181b]/80 pointer-events-none" />
+      <div className="hidden md:block absolute inset-0 bg-gradient-to-b from-black/0 to-transparent dark:from-black/50 pointer-events-none" />
       <style>{`
         @media (max-width: 767px) {
           .mobile-no-bg {

@@ -5,6 +5,7 @@ import CallToAction from '../../../components/CallToAction';
 import Footer from '../../../components/Footer';
 import FloatingContactButton from '../../../components/FloatingContactButton';
 import { notFound } from 'next/navigation';
+import Head from '../../head.js';
 
 // It's good practice to define types for your data
 // interface CourseDetailItem {
@@ -218,6 +219,7 @@ export default function CoursePage({ params }) {
 
   return (
     <>
+      <Head />
       <Header />
 
       {/* Hero Section */}
@@ -302,6 +304,18 @@ export default function CoursePage({ params }) {
       <CallToAction />
       <Footer />
       <FloatingContactButton />
+      <link rel="canonical" href={`https://yugenkottakkal.com/courses/${params.slug}`} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Course',
+        'name': course.title,
+        'description': course.description,
+        'provider': {
+          '@type': 'EducationalOrganization',
+          'name': 'YUGEN School of Accounting and Taxation',
+          'url': 'https://yugenkottakkal.com/'
+        }
+      }) }} />
     </>
   );
 }

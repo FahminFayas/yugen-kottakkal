@@ -2,7 +2,7 @@ const centers = [
   {
     city: 'Malappuram',
     name: 'Kottakkal',
-    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.030797431813!2d76.0031883146249!3d11.00413499214496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7b3a1b96cd4c9%3A0x8a9a6f8f7e7b9f0e!2sYugen%20Education%20Kottakkal!5e0!3m2!1sen!2sin!4v1678083095025!5m2!1sen!2sin',
+    map: 'https://www.google.com/maps?q=11.004144227600648,76.0053660435704&z=17&output=embed',
     phone: '+918943888006',
     coordinates: { lat: 11.004130, lng: 76.005363 }
   }

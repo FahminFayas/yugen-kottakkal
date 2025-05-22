@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 
-export default function FloatingContactButton({ bottom = 'bottom-5' }) {
+export default function FloatingContactButton({ bottom = 'bottom-10' }) {
   const [open, setOpen] = useState(false);
   return (
     <div className={`fixed right-5 ${bottom} z-[1100] flex flex-col items-end gap-3 md:gap-4`}>

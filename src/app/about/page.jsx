@@ -9,10 +9,11 @@ export default function AboutPage() {
   return (
     <>
       <Header />
+      <main aria-label="About YUGEN School of Accounting and Taxation - Kottakkal">
       {/* Hero Section */}
       <section className="bg-cover bg-center text-white py-16 min-h-[220px] flex items-center" style={{ backgroundImage: "url('/img/banner-4.jpg')" }}>
         <div className="max-w-[900px] mx-auto w-full">
-          <h1 className="text-[40px] mb-2">Who We Are?</h1>
+          <h1 className="text-[40px] pt-4 mb-4">Who We Are?</h1>
           <div className="text-[18px] opacity-90">About Us</div>
         </div>
       </section>
@@ -65,9 +66,18 @@ export default function AboutPage() {
       {/* Course Includes Section */}
       <CourseIncludes />
       <Reviews />
+      </main>
       <CallToAction />
       <Footer />
       <FloatingContactButton />
+      <link rel="canonical" href="https://yugenkottakkal.com/about" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        'name': 'About YUGEN School of Accounting and Taxation',
+        'url': 'https://yugenkottakkal.com/about',
+        'description': 'Learn about YUGEN School of Accounting & Taxation Kottakkal, our mission, vision, and the world-class training we provide for global accounting and taxation qualifications.'
+      }) }} />
     </>
   );
 } 

@@ -31,6 +31,7 @@ export default function BlogPage() {
   return (
     <>
       <Header />
+      <main aria-label="YUGEN School of Accounting and Taxation - Kottakkal Blog">
       {/* Hero Section */}
       <section className="bg-cover bg-center text-white py-16 min-h-[220px] flex items-center dark:bg-bg-dark dark:text-white" style={{ backgroundImage: "url('/img/banner-6.jpg')" }}>
         <div className="max-w-[900px] mx-auto w-full">
@@ -61,9 +62,18 @@ export default function BlogPage() {
           </div>
         </div>
       </section>
+      </main>
       <CallToAction />
       <Footer />
       <FloatingContactButton />
+      <link rel="canonical" href="https://yugenkottakkal.com/blog" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Blog',
+        'name': 'YUGEN School of Accounting and Taxation Blog',
+        'url': 'https://yugenkottakkal.com/blog',
+        'description': 'Read the latest articles, tips, and news from YUGEN School of Accounting & Taxation Kottakkal on accounting, taxation, and career development.'
+      }) }} />
     </>
   );
 } 

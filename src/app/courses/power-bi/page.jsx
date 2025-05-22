@@ -1,6 +1,7 @@
 import CallToAction from '../../../components/CallToAction';
 import Footer from '../../../components/Footer';
 import Header from '../../../components/Header';
+import Head from '../../head.js';
 
 // Consider moving this data to a separate file or fetching it if it becomes complex
 const powerBiCourseData = {
@@ -82,6 +83,7 @@ export default function PowerBICoursePage() {
 
   return (
     <>
+      <Head />
       <Header />
       <main className="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200">
         {/* Hero Section */}
@@ -194,6 +196,18 @@ export default function PowerBICoursePage() {
         <CallToAction /> {/* Your existing global CallToAction */}
       </main>
       <Footer />
+      <link rel="canonical" href="https://yugenkottakkal.com/courses/power-bi" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Course',
+        'name': 'Power BI Data Analyst Certification',
+        'description': 'Become proficient in Power BI, a leading business analytics service. This course covers everything from data connection and transformation to creating compelling visualizations and interactive dashboards.',
+        'provider': {
+          '@type': 'EducationalOrganization',
+          'name': 'YUGEN School of Accounting and Taxation',
+          'url': 'https://yugenkottakkal.com/'
+        }
+      }) }} />
     </>
   );
 }

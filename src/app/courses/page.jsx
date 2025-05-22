@@ -7,24 +7,30 @@ import FloatingContactButton from '../../components/FloatingContactButton';
 const courses = [
   {
     icon: 'fa-chart-bar',
-    name: 'GIT',
-    subtitle: 'GST, Income Tax, TDS',
-    details: ['GST Registration', 'Introduction to GST', 'Supply under GST'],
-    apply: 'https://docs.google.com/forms/d/e/1FAIpQLSdkQOoaMhqS-8whXD5Mo_bpD90j1yyFSUbzykJTmElpd35C-g/viewform',
+    name: 'Power BI',
+    subtitle: 'Business Analytics & Data Visualization',
+    details: [
+      'Getting Started with Power BI',
+      'Data Connections & Importing',
+      'Mastering Visualizations',
+      'DAX Essentials',
+      'Building Interactive Dashboards'
+    ],
+    apply: 'https://docs.google.com/forms/d/e/1FAIpQLSdD4S8oUnGpgvAIaWSh8X0r-emjoxukMPjfdzsehDc8Ao_B5g/viewform?usp=send_form',
   },
   {
     icon: 'fa-percent',
     name: 'MFTG',
     subtitle: 'Master in Finance Taxation and GST',
     details: ['Business Manual Accounts', 'Tally Prime', 'GST'],
-    apply: 'https://docs.google.com/forms/d/e/1FAIpQLSfSd3j-QypXaUi4Smx3KOe9uefiv75seywmUfZTpZWqGRBsMw/viewform',
+    apply: 'https://docs.google.com/forms/d/e/1FAIpQLSdD4S8oUnGpgvAIaWSh8X0r-emjoxukMPjfdzsehDc8Ao_B5g/viewform?usp=send_form',
   },
   {
     icon: 'fa-chart-pie',
     name: 'MFA',
     subtitle: 'Master in Foreign Accounting',
     details: ['Business Manual Accounts', 'Tally Prime', 'SAP'],
-    apply: 'https://docs.google.com/forms/d/e/1FAIpQLSfpz2pjMMDtxOa6DW-d4h-yuCE4FGwuYXGQFfuBgnTpIuZjTg/viewform',
+    apply: 'https://docs.google.com/forms/d/e/1FAIpQLSdD4S8oUnGpgvAIaWSh8X0r-emjoxukMPjfdzsehDc8Ao_B5g/viewform?usp=send_form',
   },
 ];
 
@@ -58,7 +64,7 @@ export default function CoursesPage() {
                   {course.details.map((d, j) => <li key={j}>{d}</li>)}
                 </ul>
                 <div className="flex gap-2">
-                  <a href={`/courses/${course.name.toLowerCase()}`} className="bg-primary text-white px-6 py-2 rounded-lg no-underline font-semibold focus-outline dark:bg-primary-dark dark:text-white">View Details</a>
+                  <a href={`/courses/${course.name.toLowerCase().replace(/\s+/g, '-')}`} className="bg-primary text-white px-6 py-2 rounded-lg no-underline font-semibold focus-outline dark:bg-primary-dark dark:text-white">View Details</a>
                   <a href={course.apply} target="_blank" rel="noopener" className="bg-primary text-white px-6 py-2 rounded-lg no-underline font-semibold focus-outline dark:bg-primary-dark dark:text-white">Apply Now</a>
                 </div>
               </div>

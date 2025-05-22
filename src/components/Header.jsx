@@ -59,13 +59,13 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 w-full z-[110] bg-transparent backdrop-blur-md transition-colors duration-300">
-      <nav className="max-w-[1200px] mx-auto flex items-center justify-between py-2 px-4" aria-label="Main navigation">
+      <nav className="max-w-[1200px] mx-auto flex items-center justify-between py-2  px-4" aria-label="Main navigation">
         <a href="/" className="flex items-center gap-2 group">
-          <img src="/img/logo.png" alt="Yugen Education" className="h-12 block dark:hidden" />
-          <img src="/img/logo-light.png" alt="Yugen Education" className="h-12 hidden dark:block" />
+          <img src="/img/logo.png" alt="Yugen Education" className="h-16 md:h-20 block dark:hidden" />
+          <img src="/img/logo-light.png" alt="Yugen Education" className="h-16 md:h-20 hidden dark:block" />
         </a>
         <div className={`desktop-nav flex items-center gap-8${menuOpen ? ' hidden' : ''}`}>
-          <ul className="flex items-center gap-6 list-none m-0 p-0 text-[17px]">
+          <ul className="flex items-center gap-6 list-none m-0 p-0 text-lg md:text-xl">
             <li><a href="/" className="px-2 py-1 rounded transition-colors duration-150 hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark">Home</a></li>
             <li><a href="/about" className="px-2 py-1 rounded transition-colors duration-150 hover:bg-primary/10 hover:text-primary dark:hover:bg-primary-dark/20 dark:hover:text-primary-dark">About</a></li>
             <li className="relative group">
