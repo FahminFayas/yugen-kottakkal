@@ -2,7 +2,7 @@ const centers = [
   {
     city: 'Malappuram',
     name: 'Kottakkal',
-    map: 'https://www.google.com/maps?q=11.004144227600648,76.0053660435704&z=17&output=embed',
+    map: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d559.4436988581792!2d76.00470173579167!3d11.004046884111705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7b5c547fb94b9%3A0x5c847a3391d580fb!2sYUGEN%20School%20of%20Accounting%20and%20Taxation%20-%20Kottakkal!5e1!3m2!1sen!2sin!4v1747988396268!5m2!1sen!2sin',
     phone: '+918943888006',
     coordinates: { lat: 11.004130, lng: 76.005363 }
   }

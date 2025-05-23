@@ -48,7 +48,7 @@ export default function Reviews() {
           ))}
         </div>
         <div className="text-center">
-          <a href="https://www.google.com/search?q=yugen+school+of+accounting+Kottakkal&rlz=1C1CHBF_enIN993IN993&sxsrf=ALiCzsYVWYy9yofTkF8v-vU8jUYIV3eJEw%3A1651399938822&ei=Al1uYtzjMfPXz7sPqPOquAY&ved=0ahUKEwjc7PCViL73AhXz63MBHai5CmcQ4dUDCA4&uact=5&oq=yugen+school+of+accounting+Kottakkal&gs_lcp=Cgdnd3Mtd2l6EAMyBQghEKABMgUIIRCgAToOCC4QgAQQxwEQrwEQsAM6OggIABCABBCwAzoICAAQgAQQsAM6BQgAEIAEOgYIABAWEB46BAghEBU6BwghEAoQoAFKBAhBGAFKBAhGGABQswJYqxVgvhdoAXAAeACAAZcBiAHACpIBBDAuMTCYAQCgAQHIAQHAAQE&sclient=gws-wiz#lrd=0x3ba65bc08356bebb:0x7298bfed3501ec53,3,,," target="_blank" rel="noopener" className="bg-[#e0f7f1] text-primary px-6 py-2 rounded-lg no-underline font-semibold focus-outline" aria-label="Write a review for Yugen Education on Google">Write a review</a>
+          <a href="https://g.page/r/CfuA1ZEzeoRcEBM/review" target="_blank" rel="noopener" className="bg-[#e0f7f1] text-primary px-6 py-2 rounded-lg no-underline font-semibold focus-outline" aria-label="Write a review for Yugen Education on Google">Write a review</a>
         </div>
       </div>
     </section>
