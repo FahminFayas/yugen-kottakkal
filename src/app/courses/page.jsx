@@ -16,21 +16,21 @@ const courses = [
       'DAX Essentials',
       'Building Interactive Dashboards'
     ],
-    apply: 'https://docs.google.com/forms/d/e/1FAIpQLSdD4S8oUnGpgvAIaWSh8X0r-emjoxukMPjfdzsehDc8Ao_B5g/viewform?usp=send_form',
+    apply: '/apply',
   },
   {
     icon: 'fa-percent',
     name: 'MFTG',
     subtitle: 'Master in Finance Taxation and GST',
     details: ['Business Manual Accounts', 'Tally Prime', 'GST'],
-    apply: 'https://docs.google.com/forms/d/e/1FAIpQLSdD4S8oUnGpgvAIaWSh8X0r-emjoxukMPjfdzsehDc8Ao_B5g/viewform?usp=send_form',
+    apply: '/apply',
   },
   {
     icon: 'fa-chart-pie',
     name: 'MFA',
     subtitle: 'Master in Foreign Accounting',
     details: ['Business Manual Accounts', 'Tally Prime', 'SAP'],
-    apply: 'https://docs.google.com/forms/d/e/1FAIpQLSdD4S8oUnGpgvAIaWSh8X0r-emjoxukMPjfdzsehDc8Ao_B5g/viewform?usp=send_form',
+    apply: '/apply',
   },
 ];
 
@@ -65,7 +65,7 @@ export default function CoursesPage() {
                 </ul>
                 <div className="flex gap-2">
                   <a href={`/courses/${course.name.toLowerCase().replace(/\s+/g, '-')}`} className="bg-primary text-white px-6 py-2 rounded-lg no-underline font-semibold focus-outline dark:bg-primary-dark dark:text-white">View Details</a>
-                  <a href={course.apply} target="_blank" rel="noopener" className="bg-primary text-white px-6 py-2 rounded-lg no-underline font-semibold focus-outline dark:bg-primary-dark dark:text-white">Apply Now</a>
+                  <a href={course.apply} rel="noopener" className="bg-primary text-white px-6 py-2 rounded-lg no-underline font-semibold focus-outline dark:bg-primary-dark dark:text-white">Apply Now</a>
                 </div>
               </div>
             ))}

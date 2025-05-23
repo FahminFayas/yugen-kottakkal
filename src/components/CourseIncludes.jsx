@@ -58,7 +58,7 @@ export default function CourseIncludes() {
                   <span className="text-yellow-500 font-bold">★ {course.rating}</span>
                 </div>
                 <div className="flex gap-3 mt-auto">
-                  <a href={course.applyLink} target="_blank" rel="noopener" className="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary-dark transition flex-1 text-center">Apply Now</a>
+                  <a href={course.applyLink} rel="noopener" className="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary-dark transition flex-1 text-center">Apply Now</a>
                   <button className="border-2 border-primary text-primary px-6 py-2 rounded-lg font-semibold hover:bg-primary hover:text-white transition flex-1" onClick={e => { e.stopPropagation(); setModalCourse(course); }}>Know More</button>
                 </div>
               </div>
@@ -85,7 +85,7 @@ export default function CourseIncludes() {
               </ul>
               <div className="flex items-center justify-between mt-4">
                 <span className="text-yellow-500 font-bold">★ {modalCourse.rating}</span>
-                <a href={modalCourse.applyLink} target="_blank" rel="noopener" className="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary-dark transition">Apply Now</a>
+                <a href={modalCourse.applyLink} rel="noopener" className="bg-primary text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary-dark transition">Apply Now</a>
               </div>
             </div>
           </div>

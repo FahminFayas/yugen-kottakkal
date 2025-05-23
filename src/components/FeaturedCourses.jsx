@@ -52,9 +52,7 @@ export default function FeaturedCourses() {
                       ACCOUNTING COURSE
                     </h4>
                     <a
-                      href="https://forms.gle/k3wpe6GpDYvccRtz7"
-                      target="_blank"
-                      rel="noopener"
+                      href="/apply"
                       className="inline-block mt-2 bg-primary text-white px-4 py-1.5 rounded font-semibold hover:bg-primary-dark transition text-sm"
                     >
                       Apply Now
@@ -71,9 +69,7 @@ export default function FeaturedCourses() {
                       POWER BI COURSE
                     </h4>
                     <a
-                      href="https://forms.gle/k3wpe6GpDYvccRtz7"
-                      target="_blank"
-                      rel="noopener"
+                      href="/apply"
                       className="inline-block mt-2 bg-blue-700 text-white px-4 py-1.5 rounded font-semibold hover:bg-blue-900 transition text-sm"
                     >
                       Apply Now

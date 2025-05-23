@@ -56,7 +56,7 @@ export default function AboutPage() {
                 <span className="font-semibold text-[18px] dark:text-white">Flexible Timings</span>
               </div>
               <div className="mt-8">
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLScVvMKIoTw9K_QqEeG0CeTM88Ev1hTI9CkFfi4-7_2c2d5T_w/viewform" target="_blank" rel="noopener" className="bg-primary text-white px-8 py-3 rounded-lg no-underline font-bold text-[18px]">Join Now</a>
+                <a href="/apply" rel="noopener" className="bg-primary text-white px-8 py-3 rounded-lg no-underline font-bold text-[18px]">Join Now</a>
               </div>
             </div>
           </div>
